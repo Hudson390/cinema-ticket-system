@@ -1,12 +1,18 @@
 public sealed class Ticket permits HalfPriceTicket, FamilyTicket{
 
-    private float price;
+    protected double price;
 
-    private String movieTitle;
+    protected String movieTitle;
 
-    private String soundTrack;
+    protected String soundTrack;
 
-    public float getPrice() {
+    public Ticket(double price, String movieTitle, String soundTrack) {
+        this.price = price;
+        this.movieTitle = movieTitle;
+        this.soundTrack = soundTrack;
+    }
+
+    public double getPrice() {
         return price;
     }
 
@@ -29,6 +35,10 @@ public sealed class Ticket permits HalfPriceTicket, FamilyTicket{
     public void setSoundTrack(String soundTrack) {
         this.soundTrack = soundTrack;
     }
+
+    public  double getPrice(int amount){
+        return this.getPrice() * amount;
+    };
 }
 
 

@@ -3,12 +3,9 @@ import java.util.Scanner;
 public class Main {
 
     static void main(String[] args) {
-        Ticket ticket = new Ticket();
-        HalfPriceTicket halfTicket = new HalfPriceTicket();
-
-        ticket.setPrice(36);
-        ticket.setMovieTitle("De volta para o futuro");
-        ticket.setSoundTrack("Dublado");
+        Ticket ticket = new Ticket(36, "De volta para o futuro" , "Dublado");
+        HalfPriceTicket halfTicket = new HalfPriceTicket(ticket);
+        FamilyTicket familyTicket = new FamilyTicket(ticket);
 
         Scanner input = new Scanner(System.in);
 
@@ -28,8 +25,14 @@ public class Main {
             int option = input.nextInt();
 
             switch (option) {
-                case 1 -> System.out.println("Preço: R$ " + new HalfPriceTicket().getPrice());
+                case 1 -> System.out.println("Preço: R$ " + ticket.getPrice());
                 case 2 -> System.out.println("Meia Entrada: R$ " + halfTicket.getPrice());
+                case 3 -> {
+                    System.out.println("Quantidade de ingresso:  ");
+                    var amount = input.nextInt();
+                    System.out.println("Familia: R$ " + familyTicket.getPrice(amount));
+                }
+                case 0 -> System.exit(0);
             }
 
         }while (true);
